@@ -68,14 +68,16 @@ export default async (req, res) => {
   try {
     const showStats = parseArray(show);
     const stats = await fetchStats(
-      username,
-      parseBoolean(include_all_commits),
-      parseArray(exclude_repo),
-      showStats.includes("prs_merged") ||
-        showStats.includes("prs_merged_percentage"),
-      showStats.includes("discussions_started"),
-      showStats.includes("discussions_answered"),
-    );
+  username,
+  parseBoolean(include_all_commits),
+  parseArray(exclude_repo),
+  showStats.includes("prs_merged") ||
+    showStats.includes("prs_merged_percentage"),
+  showStats.includes("discussions_started"),
+  showStats.includes("discussions_answered"),
+  process.env.PAT_1 // 👈 pass the token here
+);
+
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
