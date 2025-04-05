@@ -226,6 +226,7 @@ const fetchStats = async (
   include_merged_pull_requests = false,
   include_discussions = false,
   include_discussions_answers = false,
+  token = process.env.PAT_1  
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
